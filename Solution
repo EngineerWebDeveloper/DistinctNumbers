@@ -1,0 +1,50 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace DistinctNumber
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            Program pg = new Program();
+           int[]arr= pg.distinctNum(new int[] { 1, 1, 0, 3, 4, 5 });
+            for(int i = 0; i < arr.Length; i++)
+            {
+                Console.WriteLine(arr[i]);
+            }
+            Console.ReadLine();
+        }
+
+        int[] distinctNum(int[] arr)
+        {
+            Dictionary<int, int> elements = new Dictionary<int, int>();
+            if (arr[0] == 0) return null;
+            int first = arr[0];
+           
+            elements.Add(first, 1);
+           for (int i = 1; i < arr.Length; i++)
+            {
+                if (arr[i] == 0) continue;
+               if(elements.ContainsKey(arr[i]) )
+                {
+                    elements[arr[i]] += 1;
+                } 
+               else elements.Add(arr[i], 1);
+
+            }
+            int[] result = new int[elements.Count()];
+            int j = 0;
+           foreach(var s in elements.Keys)
+            {
+
+                result[j] = s;
+                j++;
+            }
+            return result;
+        }
+    }
+}
